@@ -16,11 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var self = this;
-    setTimeout(function() {
-      console.log("fetching items....");
-      self.fetchItems()
-    }, 10);
+    this.fetchItems()
   }
 
   fetchItems() {
