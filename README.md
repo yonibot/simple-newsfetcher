@@ -3,7 +3,7 @@
 
 A simple React application that demonstrates fetching an external API (TheGuardian Breaking News) and displaying the results.
 
-To run it:
+To run it, an API key is required from [The Guardian Developers](http://developers.theguardian.com/). Then:
 ```
 $ npm i && npm start
 ```
