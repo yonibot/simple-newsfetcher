@@ -9,30 +9,49 @@ class App extends Component {
     super();
     this.state = {
       isFetching: false,
-      items: []
+      items: [],
+      lastUpdated: null,
+      filterText: ''
     };
   }
 
   componentDidMount() {
-    this.fetchItems()
+    var self = this;
+    setTimeout(function() {
+      console.log("fetching items....");
+      self.fetchItems()
+    }, 10);
   }
 
   fetchItems() {
     this.setState({isFetching: true}, function() {
-      fetch(`http://content.guardianapis.com/world?api-key=${guardianKey}`)
+      fetch(`http://content.guardianapis.com/world?api-key=${ApiKeys.guardianKey}`)
       .then(response => response.json())
       .then(json => {
-        this.setState({items: json.response.results, isFetching: false})
+        var d = new Date();
+        this.setState({items: json.response.results, isFetching: false, lastUpdated: d.toString()})
       })
     });
+  }
+
+  updateFilterText(e) {
+    this.setState({filterText: e.target.value})
   }
 
   render() {
     return (
       <div>
         <h1>Guardian Breaking News</h1>
-        <Newsfetcher status={this.state.isFetching} refresh={this.fetchItems.bind(this)} />
-        <Headlines items={this.state.items} />
+        <h4>Filter: {this.state.filterText}</h4>
+        <Newsfetcher
+          status={this.state.isFetching}
+          refresh={this.fetchItems.bind(this)}
+          lastUpdated={this.state.lastUpdated}
+          filterText={this.state.filterText}
+          updateFilterText={this.updateFilterText.bind(this)} />
+        <Headlines
+          items={this.state.items}
+          filterText={this.state.filterText} />
       </div>
     );
   }
