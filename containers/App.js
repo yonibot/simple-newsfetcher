@@ -42,7 +42,6 @@ class App extends Component {
     return (
       <div>
         <h1>Guardian Breaking News</h1>
-        <h4>Filter: {this.state.filterText}</h4>
         <Newsfetcher
           status={this.state.isFetching}
           refresh={this.fetchItems.bind(this)}

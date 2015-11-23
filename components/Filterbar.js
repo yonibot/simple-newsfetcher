@@ -5,7 +5,7 @@ class Filterbar extends Component {
     const { filterText, updateFilterText } = this.props;
     return (
       <div>
-        <input type="text" value={filterText} onChange={updateFilterText} />
+        Filter for <input type="text" value={filterText} onChange={updateFilterText} />
       </div>
     )
   }
