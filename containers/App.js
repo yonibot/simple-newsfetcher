@@ -11,12 +11,18 @@ class App extends Component {
       isFetching: false,
       items: [],
       lastUpdated: null,
-      filterText: ''
+      filterText: '',
+      autoRefresh: false
     };
   }
 
   componentDidMount() {
     this.fetchItems();
+    setInterval(() => {
+      if (this.state.autoRefresh === true) {
+        this.fetchItems()
+      }
+    }, 3000);
   }
 
   fetchItems() {
@@ -34,6 +40,10 @@ class App extends Component {
     this.setState({filterText: e.target.value})
   }
 
+  toggleAutorefresh() {
+    this.setState({autoRefresh: !this.state.autoRefresh})
+  }
+
   render() {
     return (
       <div>
@@ -41,6 +51,8 @@ class App extends Component {
         <Newsfetcher
           status={this.state.isFetching}
           refresh={this.fetchItems.bind(this)}
+          toggleAutoRefresh={this.toggleAutorefresh.bind(this)}
+          autoRefreshStatus={this.state.autoRefresh}
           lastUpdated={this.state.lastUpdated}
           filterText={this.state.filterText}
           updateFilterText={this.updateFilterText.bind(this)} />
