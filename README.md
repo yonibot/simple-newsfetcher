@@ -8,6 +8,15 @@ To run it, an API key is required from [The Guardian Developers](http://develope
 $ npm i && npm start
 ```
 
-Based on the [React ES6 Boilerplate](https://github.com/yonibot/react-es6-boilerplate).
+#### Features demonstrated:
 
-[@yoniweisbrod](https://twitter.com/yoniweisbrod)
++ Calling an external API and rendering data
++ Passing callbacks through props
++ Inline styles (the Refresh and Autorefresh buttons)
++ React Component organization
++ Auto-refreshing data
+
+
+Using the [React ES6 Boilerplate](https://github.com/yonibot/react-es6-boilerplate).
+
+[@yoniweisbrod](https://twitter.com/intent/user?screen_name=yoniweisbrod)
